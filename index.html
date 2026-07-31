@@ -165,43 +165,41 @@
   <div class="welcome">
 
     <div id="messages">
-        <div class="bot-message">
-            Hello! I'm Linear AI.
+        <div class="bot-message">   Hello! I'm Linear AI.
         </div>
     </div>
+<div class="chat-bar">
 
-    <div class="chat-bar">
+    <input
+        id="userInput"
+        type="text"
+        placeholder="Type a message..."
+    >
 
-        <input
-            id="userInput"
-            type="text"
-            placeholder="Type a message..."
-        >
-
-        <button onclick="sendMessage()">
-            Send
-        </button>
-
-    </div>
+    <button onclick="sendMessage()">
+        Send
+    </button>
 
 </div>
 
 </div>
- 
 
 <script>
 function newChat() {
-    const welcome = document.querySelector(".welcome");
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("userInput");
 
-    if (welcome) {
-        welcome.innerHTML = `
-            <h1>New Chat</h1>
-            <p>Ask me anything...</p>
-        `;
-    }
+    messages.innerHTML = `
+        <div class="bot-message">
+            Hello! I'm Linear AI.
+        </div>
+    `;
+
+    input.value = "";
+    input.focus();
+}
 
 function sendMessage() {
-
     const input = document.getElementById("userInput");
     const messages = document.getElementById("messages");
 
@@ -211,13 +209,17 @@ function sendMessage() {
         <div class="user-message">
             ${input.value}
         </div>
+
+        <div class="bot-message">
+            I'm still under construction 🤖
+        </div>
     `;
 
     input.value = "";
-
     messages.scrollTop = messages.scrollHeight;
+    input.focus();
 }
-
 </script>
+   
 </body>
 </html>
