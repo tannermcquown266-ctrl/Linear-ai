@@ -209,7 +209,6 @@ function sendMessage() {
         <div class="user-message">
             ${input.value}
         </div>
-
         <div class="bot-message">
             I'm still under construction 🤖
         </div>
@@ -217,8 +216,15 @@ function sendMessage() {
 
     input.value = "";
     messages.scrollTop = messages.scrollHeight;
-    input.focus();
 }
+
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
+
+
 </script>
    
 </body>
