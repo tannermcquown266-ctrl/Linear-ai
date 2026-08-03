@@ -207,3 +207,95 @@ body{
 </div>
 
 </div>
+<script>
+
+function showPage(page){
+
+    const content = document.getElementById("content");
+
+    if(page==="home"){
+        content.innerHTML = `
+            <h1>Welcome to Linear AI</h1>
+            <p>Your AI Creation Studio</p>
+        `;
+    }
+
+    if(page==="chat"){
+        content.innerHTML = `
+            <div id="messages">
+                <div class="bot-message">
+                    Hello! I'm Linear AI.
+                </div>
+            </div>
+
+            <div class="chat-bar">
+                <input
+                    id="userInput"
+                    type="text"
+                    placeholder="Type a message..."
+                >
+
+                <button onclick="sendMessage()">
+                    Send
+                </button>
+            </div>
+        `;
+
+        document
+            .getElementById("userInput")
+            .addEventListener("keydown", function(event){
+                if(event.key==="Enter"){
+                    sendMessage();
+                }
+            });
+    }
+
+    if(page==="image"){
+        content.innerHTML = `
+            <h1>🖼 Image Studio</h1>
+            <p>Image generation coming soon.</p>
+        `;
+    }
+
+    if(page==="video"){
+        content.innerHTML = `
+            <h1>🎥 Video Studio</h1>
+            <p>Video generation coming soon.</p>
+        `;
+    }
+
+    if(page==="audio"){
+        content.innerHTML = `
+            <h1>🎵 Audio Studio</h1>
+            <p>Audio generation coming soon.</p>
+        `;
+    }
+
+    if(page==="docs"){
+        content.innerHTML = `
+            <h1>📄 Documents</h1>
+            <p>AI writing workspace coming soon.</p>
+        `;
+    }
+
+    if(page==="code"){
+        content.innerHTML = `
+            <h1>💻 Code</h1>
+            <p>Code assistant coming soon.</p>
+        `;
+    }
+
+    if(page==="projects"){
+        content.innerHTML = `
+            <h1>📁 Projects</h1>
+            <p>Your saved projects will appear here.</p>
+        `;
+    }
+
+    if(page==="settings"){
+        content.innerHTML = `
+            <h1>⚙️ Settings</h1>
+            <p>Customize Linear AI here.</p>
+        `;
+    }
+}
