@@ -299,3 +299,50 @@ function showPage(page){
         `;
     }
 }
+function newChat(){
+
+    const messages=document.getElementById("messages");
+    const input=document.getElementById("userInput");
+
+    if(!messages || !input) return;
+
+    messages.innerHTML=`
+        <div class="bot-message">
+            Hello! I'm Linear AI.
+        </div>
+    `;
+
+    input.value="";
+    input.focus();
+}
+
+function sendMessage(){
+
+    const input=document.getElementById("userInput");
+    const messages=document.getElementById("messages");
+
+    if(!input || !messages) return;
+
+    if(input.value.trim()==="") return;
+
+    messages.innerHTML+=`
+        <div class="user-message">
+            ${input.value}
+        </div>
+
+        <div class="bot-message">
+            I'm still under construction 🤖
+        </div>
+    `;
+
+    input.value="";
+
+    messages.scrollTop=messages.scrollHeight;
+}
+
+showPage("home");
+
+</script>
+
+</body>
+</html>
