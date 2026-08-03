@@ -1,232 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linear AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear AI</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-    body{
-      background:#050505;
-      color:white;
-      height:100vh;
-      display:flex;
-      overflow:hidden;
-    }
+body{
+    background:#050505;
+    color:white;
+    height:100vh;
+    display:flex;
+    overflow:hidden;
+}
 
-    .sidebar{
-      width:260px;
-      background:rgba(15,15,15,.85);
-      border-right:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(20px);
-      padding:20px;
-    }
+/* Sidebar */
 
-    .logo{
-      font-size:28px;
-      font-weight:bold;
-      color:#8a5cff;
-      margin-bottom:30px;
-    }
-
-    .button{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:14px;
-      background:linear-gradient(90deg,#8a5cff,#00d4ff);
-      color:white;
-      font-size:16px;
-      margin-bottom:12px;
-    }
-
-    .main{
-      flex:1;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      position:relative;
-    }
-
-    .welcome{
-      text-align:center;
-      z-index:2;
-    }
-
-    .welcome h1{
-      font-size:48px;
-      margin-bottom:10px;
-    }
-
-    .welcome p{
-      color:#bbbbbb;
-      font-size:18px;
-    }
-#messages{
-    width:100%;
-    max-width:700px;
-    margin-bottom:20px;
+.sidebar{
+    width:260px;
+    background:rgba(15,15,15,.90);
+    border-right:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    padding:20px;
     display:flex;
     flex-direction:column;
     gap:12px;
 }
 
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    color:#8a5cff;
+    margin-bottom:20px;
+}
+
+.button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#8a5cff,#00d4ff);
+    color:white;
+    font-size:16px;
+    transition:.25s;
+}
+
+.button:hover{
+    transform:translateY(-2px);
+}
+
+/* Main */
+
+.main{
+    flex:1;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.aurora{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+    rgba(138,92,255,.45),
+    rgba(0,212,255,.25),
+    transparent 70%);
+    filter:blur(90px);
+    animation:float 10s ease-in-out infinite alternate;
+}
+
+@keyframes float{
+    from{
+        transform:translate(-120px,-60px);
+    }
+    to{
+        transform:translate(120px,60px);
+    }
+}
+
+.welcome{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:850px;
+    text-align:center;
+    padding:30px;
+}
+
+.welcome h1{
+    font-size:48px;
+    margin-bottom:12px;
+}
+
+.welcome p{
+    color:#bdbdbd;
+    margin-bottom:30px;
+}
+
+/* Chat */
+
+#messages{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
+    text-align:left;
+}
+
 .bot-message{
-    background:#2b2b2b;
-    padding:12px 16px;
+    background:#262626;
+    padding:14px;
     border-radius:14px;
     align-self:flex-start;
+    max-width:80%;
 }
 
 .user-message{
     background:#8a5cff;
-    padding:12px 16px;
+    padding:14px;
     border-radius:14px;
     align-self:flex-end;
+    max-width:80%;
 }
 
 .chat-bar{
     display:flex;
     gap:10px;
-    width:100%;
-    max-width:700px;
 }
 
 .chat-bar input{
     flex:1;
     padding:14px;
-    border-radius:12px;
     border:none;
+    border-radius:12px;
     font-size:16px;
 }
 
 .chat-bar button{
-    padding:14px 20px;
+    padding:14px 22px;
     border:none;
     border-radius:12px;
     background:#8a5cff;
     color:white;
     cursor:pointer;
 }
-    .aurora{
-      position:absolute;
-      width:700px;
-      height:700px;
-      border-radius:50%;
-      background:radial-gradient(circle,
-      rgba(138,92,255,.45),
-      rgba(0,212,255,.25),
-      transparent 70%);
-      filter:blur(80px);
-      animation:float 10s ease-in-out infinite alternate;
-    }
-@keyframes float{
-    from{
-        transform:translate(-120px,-60px);
-    }
 
-    to{
-        transform:translate(120px,60px);
-     
-    
+.placeholder{
+    font-size:36px;
+    margin-bottom:15px;
 }
+
+.placeholder-text{
+    color:#bbbbbb;
 }
 </style>
 </head>
 
 <body>
-    
-
-
-
 
 <div class="sidebar">
-  <div class="logo">Linear AI</div>
 
-  <button class="button" onclick="newChat()">+ New Chat</button>
+<div class="logo">Linear AI</div>
 
-  <p>💬 Chats</p><br>
-  <p>🖼 Image Studio</p><br>
-  <p>🎥 Video Studio</p><br>
-  <p>📁 Files</p><br>
-  <p>⚙️ Settings</p>
+<button class="button" onclick="showPage('home')">🏠 Home</button>
+
+<button class="button" onclick="showPage('chat')">💬 Chat</button>
+
+<button class="button" onclick="showPage('image')">🖼 Image Studio</button>
+
+<button class="button" onclick="showPage('video')">🎥 Video Studio</button>
+
+<button class="button" onclick="showPage('audio')">🎵 Audio Studio</button>
+
+<button class="button" onclick="showPage('docs')">📄 Documents</button>
+
+<button class="button" onclick="showPage('code')">💻 Code</button>
+
+<button class="button" onclick="showPage('projects')">📁 Projects</button>
+
+<button class="button" onclick="showPage('settings')">⚙️ Settings</button>
+
 </div>
 
 <div class="main">
-  <div class="aurora"></div>
 
-  <div class="welcome">
+<div class="aurora"></div>
 
-    <div id="messages">
-        <div class="bot-message">   Hello! I'm Linear AI.
-        </div>
-    </div>
-<div class="chat-bar">
+<div id="content" class="welcome">
 
-    <input
-        id="userInput"
-        type="text"
-        placeholder="Type a message..."
-    >
+<h1>Welcome to Linear AI</h1>
 
-    <button onclick="sendMessage()">
-        Send
-    </button>
+<p>Your AI Creation Studio</p>
 
 </div>
 
 </div>
-
-<script>
-function newChat() {
-    const messages = document.getElementById("messages");
-    const input = document.getElementById("userInput");
-
-    messages.innerHTML = `
-        <div class="bot-message">
-            Hello! I'm Linear AI.
-        </div>
-    `;
-
-    input.value = ""; 
-messages.scrollTop = messages.scrollHeight;
-input.focus();
-}
-
-function sendMessage() {
-    const input = document.getElementById("userInput");
-    const messages = document.getElementById("messages");
-
-    if (input.value.trim() === "") return;
-
-    messages.innerHTML += `
-        <div class="user-message">
-            ${input.value}
-        </div>
-        <div class="bot-message">
-            I'm still under construction 🤖
-        </div>
-    `;
-
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-}
-
-document.getElementById("userInput").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
-
-
-</script>
-   
-</body>
-</html>
