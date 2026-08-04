@@ -1,348 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Linear AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear AI</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-    background:#050505;
-    color:white;
-    height:100vh;
-    display:flex;
-    overflow:hidden;
-}
-
-/* Sidebar */
-
-.sidebar{
-    width:260px;
-    background:rgba(15,15,15,.90);
-    border-right:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.logo{
-    font-size:30px;
-    font-weight:bold;
-    color:#8a5cff;
-    margin-bottom:20px;
-}
-
-.button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    cursor:pointer;
-    background:linear-gradient(90deg,#8a5cff,#00d4ff);
-    color:white;
-    font-size:16px;
-    transition:.25s;
-}
-
-.button:hover{
-    transform:translateY(-2px);
-}
-
-/* Main */
-
-.main{
-    flex:1;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-}
-
-.aurora{
-    position:absolute;
-    width:700px;
-    height:700px;
-    border-radius:50%;
-    background:radial-gradient(circle,
-    rgba(138,92,255,.45),
-    rgba(0,212,255,.25),
-    transparent 70%);
-    filter:blur(90px);
-    animation:float 10s ease-in-out infinite alternate;
-}
-
-@keyframes float{
-    from{
-        transform:translate(-120px,-60px);
-    }
-    to{
-        transform:translate(120px,60px);
-    }
-}
-
-.welcome{
-    position:relative;
-    z-index:2;
-    width:100%;
-    max-width:850px;
-    text-align:center;
-    padding:30px;
-}
-
-.welcome h1{
-    font-size:48px;
-    margin-bottom:12px;
-}
-
-.welcome p{
-    color:#bdbdbd;
-    margin-bottom:30px;
-}
-
-/* Chat */
-
-#messages{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-bottom:20px;
-    text-align:left;
-}
-
-.bot-message{
-    background:#262626;
-    padding:14px;
-    border-radius:14px;
-    align-self:flex-start;
-    max-width:80%;
-}
-
-.user-message{
-    background:#8a5cff;
-    padding:14px;
-    border-radius:14px;
-    align-self:flex-end;
-    max-width:80%;
-}
-
-.chat-bar{
-    display:flex;
-    gap:10px;
-}
-
-.chat-bar input{
-    flex:1;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-}
-
-.chat-bar button{
-    padding:14px 22px;
-    border:none;
-    border-radius:12px;
-    background:#8a5cff;
-    color:white;
-    cursor:pointer;
-}
-
-.placeholder{
-    font-size:36px;
-    margin-bottom:15px;
-}
-
-.placeholder-text{
-    color:#bbbbbb;
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="sidebar">
+<div class="app">
 
-<div class="logo">Linear AI</div>
+    <aside class="sidebar">
 
-<button class="button" onclick="showPage('home')">🏠 Home</button>
+        <div class="logo">
+            Linear AI
+        </div>
 
-<button class="button" onclick="showPage('chat')">💬 Chat</button>
+        <button id="homeBtn">🏠 Home</button>
+        <button id="chatBtn">💬 Chat</button>
+        <button id="imageBtn">🖼 Image Studio</button>
+        <button id="videoBtn">🎥 Video Studio</button>
+        <button id="audioBtn">🎵 Audio Studio</button>
+        <button id="docsBtn">📄 Documents</button>
+        <button id="codeBtn">💻 Code</button>
+        <button id="projectsBtn">📁 Projects</button>
+        <button id="settingsBtn">⚙️ Settings</button>
 
-<button class="button" onclick="showPage('image')">🖼 Image Studio</button>
+    </aside>
 
-<button class="button" onclick="showPage('video')">🎥 Video Studio</button>
+    <main id="content">
 
-<button class="button" onclick="showPage('audio')">🎵 Audio Studio</button>
+        <h1>Welcome to Linear AI</h1>
 
-<button class="button" onclick="showPage('docs')">📄 Documents</button>
+        <p>Your AI Creation Studio</p>
 
-<button class="button" onclick="showPage('code')">💻 Code</button>
-
-<button class="button" onclick="showPage('projects')">📁 Projects</button>
-
-<button class="button" onclick="showPage('settings')">⚙️ Settings</button>
+    </main>
 
 </div>
 
-<div class="main">
-
-<div class="aurora"></div>
-
-<div id="content" class="welcome">
-
-<h1>Welcome to Linear AI</h1>
-
-<p>Your AI Creation Studio</p>
-
-</div>
-
-</div>
-<script>
-
-function showPage(page){
-
-    const content = document.getElementById("content");
-
-    if(page==="home"){
-        content.innerHTML = `
-            <h1>Welcome to Linear AI</h1>
-            <p>Your AI Creation Studio</p>
-        `;
-    }
-
-    if(page==="chat"){
-        content.innerHTML = `
-            <div id="messages">
-                <div class="bot-message">
-                    Hello! I'm Linear AI.
-                </div>
-            </div>
-
-            <div class="chat-bar">
-                <input
-                    id="userInput"
-                    type="text"
-                    placeholder="Type a message..."
-                >
-
-                <button onclick="sendMessage()">
-                    Send
-                </button>
-            </div>
-        `;
-
-        document
-            .getElementById("userInput")
-            .addEventListener("keydown", function(event){
-                if(event.key==="Enter"){
-                    sendMessage();
-                }
-            });
-    }
-
-    if(page==="image"){
-        content.innerHTML = `
-            <h1 style="color:red;">THIS IS THE IMAGE PAGE</h1>
-            <p>Image generation coming soon.</p>
-        `;
-    }
-
-    if(page==="video"){
-        content.innerHTML = `
-            <h1>🎥 Video Studio</h1>
-            <p>Video generation coming soon.</p>
-        `;
-    }
-
-    if(page==="audio"){
-        content.innerHTML = `
-            <h1>🎵 Audio Studio</h1>
-            <p>Audio generation coming soon.</p>
-        `;
-    }
-
-    if(page==="docs"){
-        content.innerHTML = `
-            <h1>📄 Documents</h1>
-            <p>AI writing workspace coming soon.</p>
-        `;
-    }
-
-    if(page==="code"){
-        content.innerHTML = `
-            <h1>💻 Code</h1>
-            <p>Code assistant coming soon.</p>
-        `;
-    }
-
-    if(page==="projects"){
-        content.innerHTML = `
-            <h1>📁 Projects</h1>
-            <p>Your saved projects will appear here.</p>
-        `;
-    }
-
-    if(page==="settings"){
-        content.innerHTML = `
-            <h1>⚙️ Settings</h1>
-            <p>Customize Linear AI here.</p>
-        `;
-    }
-}
-function newChat(){
-
-    const messages=document.getElementById("messages");
-    const input=document.getElementById("userInput");
-
-    if(!messages || !input) return;
-
-    messages.innerHTML=`
-        <div class="bot-message">
-            Hello! I'm Linear AI.
-        </div>
-    `;
-
-    input.value="";
-    input.focus();
-}
-
-function sendMessage(){
-
-    const input=document.getElementById("userInput");
-    const messages=document.getElementById("messages");
-
-    if(!input || !messages) return;
-
-    if(input.value.trim()==="") return;
-
-    messages.innerHTML+=`
-        <div class="user-message">
-            ${input.value}
-        </div>
-
-        <div class="bot-message">
-            I'm still under construction 🤖
-        </div>
-    `;
-
-    input.value="";
-
-    messages.scrollTop=messages.scrollHeight;
-}
-
-showPage("home");
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
