@@ -176,4 +176,4 @@ document.getElementById("settingsBtn").onclick = function () {
 };
 
 // ---------- START ----------
-showHome();
+showChat();
