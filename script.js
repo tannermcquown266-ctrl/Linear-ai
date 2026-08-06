@@ -102,78 +102,135 @@ function showImage() {
 
 // ---------- VIDEO STUDIO ----------
 function showVideo() {
+
     content.innerHTML = `
-        <h1>🎥 Video Studio</h1>
 
-        <p>Create AI videos from text or images.</p>
+    <h1>🎥 Video Studio</h1>
 
-        <textarea
-            id="videoPrompt"
-            placeholder="Describe the video..."
-            rows="6"
-            style="width:100%; margin-top:20px;"
-        ></textarea>
+    <p>Create AI videos from text, images, or videos.</p>
 
-        <br><br>
+    <br>
 
-        <button id="generateVideoBtn">
-            Generate Video
-        </button>
+    <textarea
+        id="videoPrompt"
+        placeholder="Describe the video you want to create..."
+        rows="8"
+        style="
+            width:100%;
+            padding:15px;
+            border-radius:12px;
+            font-size:16px;
+            resize:vertical;
+        "
+    ></textarea>
 
-        <div id="videoResult" style="margin-top:30px;"></div>
+    <br><br>
+
+    <h3>Upload Files</h3>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+    >
+
+    <br><br>
+
+    <input
+        type="file"
+        id="videoUpload"
+        accept="video/*"
+    >
+
+    <br><br>
+
+    <input
+        type="file"
+        id="audioUpload"
+        accept="audio/*"
+    >
+
+    <br><br>
+
+    <h3>Video Length</h3>
+
+    <select id="videoLength">
+        <option>15 seconds</option>
+        <option>30 seconds</option>
+        <option>1 minute</option>
+        <option>2 minutes</option>
+        <option>3 minutes</option>
+        <option>5 minutes</option>
+        <option>10 minutes</option>
+        <option>30 minutes</option>
+    </select>
+
+    <br><br>
+        <h3>Video Style</h3>
+
+    <select id="videoStyle">
+        <option>Cinematic</option>
+        <option>Realistic</option>
+        <option>Animated</option>
+        <option>Anime</option>
+        <option>3D</option>
+        <option>Pixel Art</option>
+        <option>Fantasy</option>
+        <option>Sci-Fi</option>
+    </select>
+
+    <br><br>
+
+    <h3>Quality</h3>
+
+    <select id="videoQuality">
+        <option>Draft</option>
+        <option>Standard</option>
+        <option>High</option>
+        <option>Ultra</option>
+    </select>
+
+    <br><br>
+
+    <button id="generateVideoBtn">
+        🚀 Generate Video
+    </button>
+
+    <br><br>
+
+    <div id="videoResult"></div>
     `;
-
-    document
+        document
         .getElementById("generateVideoBtn")
         .addEventListener("click", function () {
 
             const prompt =
                 document.getElementById("videoPrompt").value;
 
-            document.getElementById("videoResult").innerHTML = `
-                <h3>Prompt</h3>
-                <p>${prompt}</p>
+            const length =
+                document.getElementById("videoLength").value;
 
-                <p><b>Video generation coming soon.</b></p>
+            const style =
+                document.getElementById("videoStyle").value;
+
+            const quality =
+                document.getElementById("videoQuality").value;
+
+            document.getElementById("videoResult").innerHTML = `
+                <h2>Video Ready</h2>
+
+                <p><b>Prompt:</b> ${prompt}</p>
+
+                <p><b>Length:</b> ${length}</p>
+
+                <p><b>Style:</b> ${style}</p>
+
+                <p><b>Quality:</b> ${quality}</p>
+
+                <hr>
+
+                <p>🎬 Video generation engine coming soon.</p>
             `;
         });
+
 }
-// ---------- SIMPLE PAGES ----------
-function simplePage(title, message) {
-    content.innerHTML = `
-        <h1>${title}</h1>
-        <p>${message}</p>
-    `;
-}
-
-// ---------- BUTTONS ----------
-document.getElementById("homeBtn").onclick = showHome;
-
-document.getElementById("chatBtn").onclick = showChat;
-
-document.getElementById("imageBtn").onclick = showImage;
-
-document.getElementById("videoBtn").onclick = showVideo;
-
-document.getElementById("audioBtn").onclick = function () {
-    simplePage("🎵 Audio Studio", "Audio generation coming soon.");
-};
-
-document.getElementById("docsBtn").onclick = function () {
-    simplePage("📄 Documents", "Document tools coming soon.");
-};
-
-document.getElementById("codeBtn").onclick = function () {
-    simplePage("💻 Code", "Code tools coming soon.");
-};
-
-document.getElementById("projectsBtn").onclick = function () {
-    simplePage("📁 Projects", "Projects coming soon.");
-};
-
-document.getElementById("settingsBtn").onclick = function () {
-    simplePage("⚙️ Settings", "Settings coming soon.");
-};
-
-// ---------- START ----------
-showChat();
